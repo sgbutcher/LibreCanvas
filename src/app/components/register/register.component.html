@@ -1,0 +1,31 @@
+<div class="col-md-6">
+  <h1>Register</h1>
+  <p class="lead">Already a member? Please <a routerLink="/login">log in</a> instead.</p>
+  <form [formGroup]="registerForm" (ngSubmit)="register()">
+    <div class="form-group">
+      <label for="name">Full name</label>
+      <input id="name" name="name" type="text" class="form-control" formControlName="name" placeholder="Enter your name" >
+      <div *ngIf="f.name.invalid && (f.name.dirty || f.name.touched)" class="alert alert-danger">
+        <div *ngIf="f.name.errors.required">Name is required.</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="email">Email address</label>
+      <input id="email" name="email" type="email" class="form-control" formControlName="email" placeholder="Enter email" >
+      <div *ngIf="f.email.invalid && (f.email.dirty || f.email.touched)" class="alert alert-danger">
+        <div *ngIf="f.email.errors.required">Email is required.</div>
+        <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" class="form-control" formControlName="password" placeholder="Password" >
+      <div *ngIf="f.password.invalid && (f.password.dirty || f.password.touched)" class="alert alert-danger">
+        <div *ngIf="f.password.errors.required">Password is required.</div>
+        <div *ngIf="f.password.errors.minlength">Password must be at least 4 characters</div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="!registerForm.valid">Register!</button>
+    <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+  </form>
+</div>
