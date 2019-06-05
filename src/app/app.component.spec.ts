@@ -32,4 +32,11 @@ describe('AppComponent', () => {
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('h1').textContent).toContain('Welcome to LibreCanvas!');
   });
+
+  it('should contain create course in the menu', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('#createcourse').textContent).toContain('Create Course');
+  });
 });
