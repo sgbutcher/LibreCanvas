@@ -16,6 +16,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { UserEditComponent } from './components/user/user-edit/user-edit.component';
 import { CreatecourseComponent } from './components/createcourse/createcourse.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

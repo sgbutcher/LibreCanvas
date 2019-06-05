@@ -20,7 +20,7 @@ describe('CreatecourseComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
     title = fixture.nativeElement.querySelector('h2');
-    CTitleInput = fixture.debugElement.query(By.css('.ctitle')).nativeElement;
+    CTitleInput = fixture.debugElement.query(By.css('#ctitle-input')).nativeElement;
   });
 
   it('should create', () => {
@@ -30,6 +30,7 @@ describe('CreatecourseComponent', () => {
   it('should have as title Create Course', () => {
     expect(title.textContent).toEqual('Create Course');
   });
+  
   it('should have field for course title', () => {
     expect(CTitleInput).toBeTruthy();
   });
