@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { course } from '../../models/course'
 
 @Component({
@@ -8,6 +8,7 @@ import { course } from '../../models/course'
 })
 export class CreatecourseComponent implements OnInit {
 
+  @Input() course: course;
   constructor() { }
 
   ngOnInit() {
