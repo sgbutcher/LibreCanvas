@@ -24,9 +24,8 @@ describe('CreatecourseComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have as title "Create Course"', () => {
-    const fixture = TestBed.createComponent(CreatecourseComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('LibreCanvas');
+  it('should have as title Create Course', () => {
+    
+    expect(title.textContent).toEqual('Create Course');
   });
 });
