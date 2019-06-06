@@ -9,6 +9,7 @@ import { of } from 'rxjs';
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
+  const formBuilder: FormBuilder = new FormBuilder();
 
   const authenticationService = jasmine.createSpyObj('AuthenticationService', ['isLoggedIn','getUserDetails', 'logout']);
   authenticationService.isLoggedIn.and.returnValue( of(true) );
@@ -17,7 +18,8 @@ describe('LoginComponent', () => {
       imports: [RouterTestingModule, ReactiveFormsModule],
       declarations: [ LoginComponent ],
       providers:    [
-        { provide: AuthenticationService, useValue: authenticationService }
+        { provide: AuthenticationService, useValue: authenticationService },
+        { provide: FormBuilder, useValue: formBuilder}
       ]
     })
     .compileComponents();
@@ -26,6 +28,7 @@ describe('LoginComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
+    component.loginForm = formBuilder.group({});
     fixture.detectChanges();
   });
 

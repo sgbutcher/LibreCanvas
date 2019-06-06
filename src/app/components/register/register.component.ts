@@ -45,7 +45,7 @@ export class RegisterComponent implements OnInit {
       email: this.f.email.value,
       name: this.f.name.value,
       password: this.f.password.value,
-      role: Role.User
+      role: Role.User,
     };
     
     this.auth.register(credentials).subscribe(() => {

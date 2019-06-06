@@ -1,7 +1,6 @@
 import { TestBed, async } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { UserService } from './user.service';
-import { RouterTestingModule } from '@angular/router/testing';
 import { AuthenticationService } from '../services/authentication.service';
 import { of } from 'rxjs';
 

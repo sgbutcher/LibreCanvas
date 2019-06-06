@@ -25,4 +25,7 @@ router.get('/users/:id', auth, ctrlAdmin.getUserById);
 router.post('/users/edit/:id', auth, ctrlAdmin.editUser);
 router.get('/users/delete/:id', auth, ctrlAdmin.deleteUser);
 
+//course
+router.post('/course', auth)
+
 export default router;

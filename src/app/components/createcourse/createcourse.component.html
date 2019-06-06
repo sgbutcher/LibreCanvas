@@ -1,11 +1,12 @@
 <h2>Create Course</h2>
-<form class="form">
+<form class="form" [formGroup]="CreateCourseForm"  (ngSubmit)="create()">
   <div class="form-group">
     <label for="ctitle-input">Course Title:</label>
-    <input id="ctitle-input" class="form-control" placeholder="title"/>
+    <input id="ctitle-input" name="title" class="form-control" formControlName="title" placeholder="title"/>
   
     <label for="cdesc-input">Course description:</label>
-    <textarea id="cdesc-input" class="form-control" placeholder="course description"></textarea>
+    <textarea id="cdesc-input" name="description" class="form-control" formControlName="description" placeholder="course description"></textarea>
   </div>
+  <button id="create-button" type="submit" class="btn btn-primary">Create</button>
 </form>
 

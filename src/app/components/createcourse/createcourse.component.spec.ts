@@ -1,8 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, FormsModule } from '@angular/forms';
 import { CreatecourseComponent } from './createcourse.component';
+import { AuthenticationService } from '../../services/authentication.service';
 import { By } from '@angular/platform-browser';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { of } from 'rxjs';
 
 
 describe('CreatecourseComponent', () => {
@@ -11,13 +14,24 @@ describe('CreatecourseComponent', () => {
   let title: HTMLElement;
   let CTitleInput: HTMLElement;
   let CdiscriptionInput: HTMLElement;
+  let CButton: HTMLElement;
+  const authenticationService = jasmine.createSpyObj('AuthenticationService', ['isLoggedIn','getUserDetails']);
+    authenticationService.isLoggedIn.and.returnValue( of(true) );
+  const formBuilder: FormBuilder = new FormBuilder();
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
+        RouterTestingModule,
+        ReactiveFormsModule,
         FormsModule,
         HttpClientTestingModule
       ],
-      declarations: [ CreatecourseComponent ]
+      declarations: [ CreatecourseComponent ],
+      providers:    [
+        { provide: AuthenticationService, useValue: authenticationService },
+        { provide: FormBuilder, useValue: formBuilder}
+      ]
     })
     .compileComponents();
   }));
@@ -29,6 +43,7 @@ describe('CreatecourseComponent', () => {
     title = fixture.nativeElement.querySelector('h2');
     CTitleInput = fixture.debugElement.query(By.css('#ctitle-input')).nativeElement;
     CdiscriptionInput = fixture.debugElement.query(By.css('#cdesc-input')).nativeElement;
+    CButton = fixture.debugElement.query(By.css('#create-button')).nativeElement;
   });
 
   it('should create', () => {
@@ -45,6 +60,10 @@ describe('CreatecourseComponent', () => {
 
   it('should have field for course description', () => {
     expect(CdiscriptionInput).toBeTruthy();
+  });
+  
+  it('should have have create button', () => {
+    expect(CButton).toBeTruthy();
   });
 
 
