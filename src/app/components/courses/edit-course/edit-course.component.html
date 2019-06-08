@@ -1,0 +1,26 @@
+<form [formGroup]="editForm" (ngSubmit)="editCourse()">
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input id="title" name="title"  class="form-control" formControlName="title" placeholder="Enter a course title" />
+    <div *ngIf="f.title.invalid && (f.title.dirty || f.title.touched)" class="alert alert-danger">
+      <div *ngIf="f.title.errors.required">Name is required.</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="description">Description address</label>
+    <textarea id="description" name="description"  class="form-control" formControlName="description" placeholder="Enter description" ></textarea>
+    <div *ngIf="f.description.invalid && (f.description.dirty || f.description.touched)" class="alert alert-danger">
+      <div *ngIf="f.description.errors.required">Description is required.</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="regCode">Registration Code</label>
+    <input id="regCode" name="regCode"  class="form-control" formControlName="regCode" placeholder="Enter Registration Code" />
+    <div *ngIf="f.regCode.invalid && (f.regCode.dirty || f.regCode.touched)" class="alert alert-danger">
+      <div *ngIf="f.regCode.errors.required">Registration Code is required.</div>
+    </div>
+  </div>
+    <button class="btn btn-danger" routerLink="/course">Cancel</button>
+    <button class="btn btn-success" type="submit" (click)="editCourse()" [disabled]="editForm.invalid">Save</button>
+  <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+</form>

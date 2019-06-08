@@ -10,18 +10,23 @@ import { UserEditComponent } from './components/user/user-edit/user-edit.compone
 import { AuthGuard } from './guards/auth.guard';
 import { AdminGuard } from './guards/admin.guard';
 import { Role } from './models/role';
-import { CreatecourseComponent } from './components/createcourse/createcourse.component'
+import { CreatecourseComponent } from './components/courses/createcourse/createcourse.component'
+import { EditCourseComponent } from './components/courses/edit-course/edit-course.component'
+import { CoursesComponent } from './components/courses/courses.component'
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
-  { path: 'createcourse', component: CreatecourseComponent, canActivate: [AuthGuard] },
   //{ path: 'profile/edit', component: EditProfileComponent, canActivate: [AuthGuard] },
   { path: 'admin', component: AdminComponent, canActivate: [AuthGuard, AdminGuard], data: { roles: [Role.Admin] } },
   { path: 'users', component: AdminComponent, canActivate: [AuthGuard, AdminGuard], data: { roles: [Role.Admin] } },
-  { path: 'users/edit/:id', component: UserEditComponent, canActivate: [AuthGuard, AdminGuard], data: { roles: [Role.Admin] } }
+  { path: 'users/edit/:id', component: UserEditComponent, canActivate: [AuthGuard, AdminGuard], data: { roles: [Role.Admin] } },
+  { path: 'course', component: CoursesComponent, canActivate: [AuthGuard, AdminGuard], data: { roles: [Role.Admin] } },
+  { path: 'course/edit/:id', component: EditCourseComponent, canActivate: [AuthGuard, AdminGuard], data: { roles: [Role.Admin] } },
+  { path: 'createcourse', component: CreatecourseComponent, canActivate: [AuthGuard] }
+  
 ];
 
 @NgModule({

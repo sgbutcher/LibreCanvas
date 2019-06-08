@@ -14,7 +14,9 @@ import { AuthenticationService } from './services/authentication.service';
 import { UserService } from './services/user.service';
 import { AdminComponent } from './components/admin/admin.component';
 import { UserEditComponent } from './components/user/user-edit/user-edit.component';
-import { CreatecourseComponent } from './components/createcourse/createcourse.component';
+import { CreatecourseComponent } from './components/courses/createcourse/createcourse.component';
+import { CoursesComponent } from './components/courses/courses.component';
+import { EditCourseComponent } from './components/courses/edit-course/edit-course.component';
 
 
 @NgModule({
@@ -26,7 +28,9 @@ import { CreatecourseComponent } from './components/createcourse/createcourse.co
     RegisterComponent,
     AdminComponent,
     UserEditComponent,
-    CreatecourseComponent
+    CreatecourseComponent,
+    CoursesComponent,
+    EditCourseComponent
   ],
   imports: [
     BrowserModule,

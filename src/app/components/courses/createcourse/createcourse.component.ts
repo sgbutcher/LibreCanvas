@@ -1,11 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Course } from '../../models/course'
-import { CourseService } from '../../services/course.service'
-import { AuthenticationService, TokenPayload } from '../../services/authentication.service';
+import { Course } from '../../../models/course'
+import { CourseService } from '../../../services/course.service'
+import { AuthenticationService, TokenPayload } from '../../../services/authentication.service';
 import { Router } from '@angular/router';
-import { UserDetails } from '../../models/user'
+import { UserDetails } from '../../../models/user'
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Role } from '../../models/role';
+import { Role } from '../../../models/role';
 
 @Component({
   selector: 'app-createcourse',
@@ -31,18 +31,18 @@ export class CreatecourseComponent implements OnInit {
     if (this.CreateCourseForm.invalid) {
       return;
     }
-    var cuser =  this.details._id;
+    
     // Use values from form to register user
     var courseDetails: Course = {
       _id: '',
       title: this.f.title.value,
       description: this.f.description.value,
-      instructor: cuser,
-      regCode:'123456'
+      instructor: { _id:this.auth.getUserDetails()._id, name: this.auth.getUserDetails().name,email: this.auth.getUserDetails().email },
+      regCode:'123456',
     };
     if (!courseDetails) { return; }
-    this.courseService.addCourse(courseDetails).subscribe(() => {
-      this.router.navigateByUrl('/course');
+    this.courseService.addCourse(courseDetails).subscribe((c) => {
+      this.router.navigateByUrl(`course/edit/${c._id}`);
     });
   }
 

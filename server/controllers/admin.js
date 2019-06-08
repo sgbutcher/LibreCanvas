@@ -36,7 +36,7 @@ export function editUser(req, res) {
   } else {
     User.findById(req.params.id, (err, user) => {
         if (!user)
-            return next(new Error('Could not load Document'));
+          res.json(err);
         else {
             user.name = req.body.name;
             user.email = req.body.email;

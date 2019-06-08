@@ -1,0 +1,24 @@
+<h1>Courses</h1>
+
+<div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Course Title</th>
+        <th scope="col">Instructor</th>
+        <th scope="col">Description</th>
+        <th scope="col">Registration Code</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let course of courses">
+        <th scope="row">{{course.title}}</th>
+        <td>{{course.instructor.name}}</td>
+        <td>{{course.description}}</td>
+        <td>{{course.regCode}}</td>
+<!--         <td><button class="btn btn-success" type="button" (click)="editUser(user._id)">Edit</button>
+        <button class="btn btn-danger" type="button" (click)="deleteUser(user._id)">Delete</button></td> -->
+      </tr>
+    </tbody>
+  </table>
+</div>
