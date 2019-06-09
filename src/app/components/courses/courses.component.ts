@@ -17,7 +17,7 @@ export class CoursesComponent implements OnInit {
     this.fetchUsers();
   }
   fetchUsers() {
-    this.courseService.getAllCourses().subscribe((courseList : Course[]) => {
+    this.courseService.getPublishedCourses().subscribe((courseList : Course[]) => {
       this.courses = courseList;
     }, (err) => {
       console.error(err);

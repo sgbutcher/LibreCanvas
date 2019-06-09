@@ -13,6 +13,7 @@ import { Role } from './models/role';
 import { CreatecourseComponent } from './components/courses/createcourse/createcourse.component'
 import { EditCourseComponent } from './components/courses/edit-course/edit-course.component'
 import { CoursesComponent } from './components/courses/courses.component'
+import { InstructorCourseComponent } from './components/courses/instructor-course/instructor-course.component'
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -23,9 +24,11 @@ const routes: Routes = [
   { path: 'admin', component: AdminComponent, canActivate: [AuthGuard, AdminGuard], data: { roles: [Role.Admin] } },
   { path: 'users', component: AdminComponent, canActivate: [AuthGuard, AdminGuard], data: { roles: [Role.Admin] } },
   { path: 'users/edit/:id', component: UserEditComponent, canActivate: [AuthGuard, AdminGuard], data: { roles: [Role.Admin] } },
-  { path: 'course', component: CoursesComponent, canActivate: [AuthGuard, AdminGuard], data: { roles: [Role.Admin] } },
-  { path: 'course/edit/:id', component: EditCourseComponent, canActivate: [AuthGuard, AdminGuard], data: { roles: [Role.Admin] } },
-  { path: 'createcourse', component: CreatecourseComponent, canActivate: [AuthGuard] }
+  { path: 'courses', component: CoursesComponent, canActivate: [AuthGuard] },
+  { path: 'course/edit/:id', component: EditCourseComponent, canActivate: [AuthGuard] },
+  { path: 'createcourse', component: CreatecourseComponent, canActivate: [AuthGuard] },
+  { path: 'courses/instructor', component: InstructorCourseComponent, canActivate: [AuthGuard] },
+  
   
 ];
 

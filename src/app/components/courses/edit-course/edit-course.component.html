@@ -20,7 +20,21 @@
       <div *ngIf="f.regCode.errors.required">Registration Code is required.</div>
     </div>
   </div>
-    <button class="btn btn-danger" routerLink="/course">Cancel</button>
+  <div class="form-group form-check">
+    <label for="published" class="form-check-label">
+    <input id="published" name="published" type="checkbox" class="form-check-input" formControlName="published" >
+    Published
+    <div *ngIf="f.published.invalid && (f.published.dirty || f.published.touched)" class="alert alert-danger">
+      <div *ngIf="f.published.errors.required">Registration Code is required.</div>
+    </div>
+  </label>
+  </div>
+  <div class="form-group" >
+    <button class="btn btn-warning" routerLink="/course">Cancel</button>
     <button class="btn btn-success" type="submit" (click)="editCourse()" [disabled]="editForm.invalid">Save</button>
+    <div class="float-right">
+      <button class="btn btn-danger" type="button" (click)="deleteCourse(course._id)">Delete Course</button>
+    </div>
   <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+  </div>
 </form>

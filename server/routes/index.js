@@ -28,10 +28,12 @@ router.get('/users/delete/:id', auth, ctrlAdmin.deleteUser);
 
 
 //course
-router.get('/course', auth, ctrlCourse.getAllCourses);
+router.get('/course', auth, ctrlCourse.getPublishedCourses);
 router.post('/course', auth, ctrlCourse.addCourse);
-router.get('/course/:id', auth, ctrlCourse.getCourseById);
 router.post('/course/edit/:id', auth, ctrlCourse.editCourse);
-router.get('/course/intructor/:id', auth, ctrlCourse.getAllCoursesByInstrctor)
+router.get('/course/instructor', auth, ctrlCourse.getCoursesByInstructor);
+router.get('/course/delete/:id', auth, ctrlCourse.deleteCourse);
+router.get('/course/:id', auth, ctrlCourse.getCourseById);
+
 
 export default router;

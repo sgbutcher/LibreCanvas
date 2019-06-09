@@ -19,19 +19,20 @@ export class CourseService {
 
   /** POST: add a new course to the server */
   public addCourse(course: Course): Observable<Course> {
-    return this.http.post<Course>(this.courseUrl, course, { headers: { Authorization: `Bearer ${localStorage.getItem('mean-token')}` }})
+    return this.http.post<Course>(this.courseUrl, course, { headers: { Authorization: `Bearer ${localStorage.getItem('mean-token')}` }});
   }
 
   getCourseById(id): Observable<any> {
     return this.http.get(`/api/course/${id}`, { headers: { Authorization: `Bearer ${localStorage.getItem('mean-token')}` }});
   }
 
-  editCourse(id, title, description,  regCode): Observable<any> {
+  editCourse(id, title, description, regCode, published): Observable<any> {
     const course = {
       _id: id,
       title: title,
       description: description,
-      regCode: regCode
+      regCode: regCode,
+      published: published
     }
     return this.http.post(`/api/course/edit/${id}`, course, { headers: { Authorization: `Bearer ${localStorage.getItem('mean-token')}` }});
   }
@@ -39,8 +40,14 @@ export class CourseService {
   getAllCourses(): Observable<any> {
     return this.http.get(`/api/course`, { headers: { Authorization: `Bearer ${localStorage.getItem('mean-token')}` }});
   }
-  getInstructedCourses(id): Observable<any> {
-    return this.http.get(`/api/course/instructor/${id}`, { headers: { Authorization: `Bearer ${localStorage.getItem('mean-token')}` }});
+  getInstructedCourses(): Observable<any> {
+    return this.http.get(`/api/course/instructor`, { headers: { Authorization: `Bearer ${localStorage.getItem('mean-token')}` }});
+  }
+  getPublishedCourses(): Observable<any> {
+    return this.http.get(`/api/course`, { headers: { Authorization: `Bearer ${localStorage.getItem('mean-token')}` }});
+  }
+  deleteCourse(id): Observable<any> {
+    return this.http.get(`/api/course/delete/${id}`, { headers: { Authorization: `Bearer ${localStorage.getItem('mean-token')}` }});
   }
 }
   

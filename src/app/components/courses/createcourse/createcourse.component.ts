@@ -31,17 +31,23 @@ export class CreatecourseComponent implements OnInit {
     if (this.CreateCourseForm.invalid) {
       return;
     }
+    var rnumber = Math.floor((Math.random() * (9999 - 1234 + 1)) + 1000).toString();
+    var cname = this.f.title.value.split(' ');
     
     // Use values from form to register user
     var courseDetails: Course = {
       _id: '',
       title: this.f.title.value,
       description: this.f.description.value,
-      instructor: { _id:this.auth.getUserDetails()._id, name: this.auth.getUserDetails().name,email: this.auth.getUserDetails().email },
-      regCode:'123456',
+      instructor: { 
+        _id:this.auth.getUserDetails()._id,
+         name: this.auth.getUserDetails().name,
+         email: this.auth.getUserDetails().email 
+        },
+      regCode: cname[0] + rnumber,
+      published: false
     };
-    if (!courseDetails) { return; }
-    this.courseService.addCourse(courseDetails).subscribe((c) => {
+      this.courseService.addCourse(courseDetails).subscribe((c) => {
       this.router.navigateByUrl(`course/edit/${c._id}`);
     });
   }

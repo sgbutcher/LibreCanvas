@@ -3,7 +3,7 @@ import { Router, ActivatedRoute, ChildActivationStart } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CourseService } from '../../../services/course.service';
 import { Course } from '../../../models/course'
-import { Role } from '../../../models/role';
+import { AuthenticationService } from '../../../services/authentication.service';
 
 @Component({
   selector: 'app-edit-course',
@@ -18,14 +18,15 @@ export class EditCourseComponent implements OnInit {
   regCode: string;
   error = '';
 
-  constructor(private courseService: CourseService, private fb: FormBuilder,
+  constructor(private auth: AuthenticationService, private courseService: CourseService, private fb: FormBuilder,
               private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.editForm = this.fb.group({
       title: ['', [Validators.required]],
       description: ['', [Validators.required]],
-      regCode: ['', [Validators.required]]
+      regCode: ['', [Validators.required]],
+      published: ['', [Validators.required]]
     });
     
     this.route.params.subscribe(params => {
@@ -35,6 +36,7 @@ export class EditCourseComponent implements OnInit {
         this.editForm.get('title').setValue(this.course.title);
         this.editForm.get('description').setValue(this.course.description);
         this.editForm.get('regCode').setValue(this.course.regCode)
+        this.editForm.get('published').setValue(this.course.published)
       });
     });
   }
@@ -47,14 +49,22 @@ export class EditCourseComponent implements OnInit {
     if (this.editForm.invalid) {
       return;
     } else {
-    this.courseService.editCourse(this.id, this.f.title.value, this.f.description.value, this.f.regCode.value)
+    this.courseService.editCourse(this.id, this.f.title.value, this.f.description.value, this.f.regCode.value, this.f.published.value)
         .subscribe(() => {
-          this.router.navigateByUrl('/course');
+          this.router.navigateByUrl('/courses/instructor');
         }, (err) => {
           this.error = err.error.message;
           console.error(err);
         });
     }
   }
-
+  deleteCourse() {
+    this.courseService.deleteCourse(this.id)
+    .subscribe(() => {
+      this.router.navigateByUrl('/courses/instructor');
+    }, (err) => {
+      this.error = err.error.message;
+      console.error(err);
+    });
+  }
 }

@@ -1,0 +1,11 @@
+.cursor-pointer{
+    cursor: pointer;
+}
+
+h1 {
+    text-underline-position: below;
+}
+
+h2 {
+    font-style: italic;
+}

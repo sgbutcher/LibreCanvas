@@ -15,6 +15,9 @@ var courseSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  published: {
+    type: Boolean
+  }
 });
 
 export default mongoose.model('Course', courseSchema);

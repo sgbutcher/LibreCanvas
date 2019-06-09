@@ -17,6 +17,7 @@ import { UserEditComponent } from './components/user/user-edit/user-edit.compone
 import { CreatecourseComponent } from './components/courses/createcourse/createcourse.component';
 import { CoursesComponent } from './components/courses/courses.component';
 import { EditCourseComponent } from './components/courses/edit-course/edit-course.component';
+import { InstructorCourseComponent } from './components/courses/instructor-course/instructor-course.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { EditCourseComponent } from './components/courses/edit-course/edit-cours
     UserEditComponent,
     CreatecourseComponent,
     CoursesComponent,
-    EditCourseComponent
+    EditCourseComponent,
+    InstructorCourseComponent
   ],
   imports: [
     BrowserModule,

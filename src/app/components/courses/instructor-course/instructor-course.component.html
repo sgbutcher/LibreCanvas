@@ -1,0 +1,28 @@
+
+<h1>Instructor</h1>
+<h2>My Courses</h2>
+
+<div>
+  <table class="table table-responsive table-hover">
+    <thead>
+      <tr>
+          <th scope="col">Course Title</th>
+          <th scope="col">Instructor</th>
+          <th scope="col">Description</th>
+          <th scope="col">Registration Code</th>
+          <th scope="col">Published</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let course of courses" (click)="editCourse(course._id)" class="cursor-pointer" title="Edit Course">
+        <th >{{course.title}}</th>
+        <td >{{course.instructor.name}}</td>
+        <td >{{course.description}}</td>
+        <td >{{course.regCode}}</td>
+        <td >{{course.published}}</td>
+<!--         <td><button class="btn btn-success" type="button" (click)="editUser(user._id)">Edit</button>
+        <button class="btn btn-danger" type="button" (click)="deleteUser(user._id)">Delete</button></td> -->
+      </tr>
+    </tbody>
+  </table>
+</div>
