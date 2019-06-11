@@ -32,6 +32,8 @@ router.get('/course', auth, ctrlCourse.getPublishedCourses);
 router.post('/course', auth, ctrlCourse.addCourse);
 router.post('/course/edit/:id', auth, ctrlCourse.editCourse);
 router.post('/course/addassignment/:id', auth, ctrlCourse.addAssignment);
+router.post('/course/editassignment/:id', auth, ctrlCourse.editAssignment);
+router.get('/course/getassignment/:id', auth, ctrlCourse.getAssignmenteById);
 router.get('/course/instructor', auth, ctrlCourse.getCoursesByInstructor);
 router.get('/course/enrolled', auth, ctrlCourse.getEnrolledCourses);
 router.post('/course/enroll/:id', auth, ctrlCourse.enrollInCourse);

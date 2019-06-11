@@ -67,7 +67,24 @@ export class CourseService {
       _id: userid
     }
     return this.http.post(`/api/course/drop/${id}`, r, { headers: { Authorization: `Bearer ${localStorage.getItem('mean-token')}` }});
-  } 
+  }
+  editAssignment (id,  title, description, instructions, dueDate, pointValue): Observable<any> {
+    const assign = {
+      _id: id,
+      title: title,
+      description: description,
+      instructions: instructions,
+      dueDate: dueDate,
+      pointValue: pointValue
+    }
+    return this.http.post(`/api/course/editassignment/${id}`, assign, { headers: { Authorization: `Bearer ${localStorage.getItem('mean-token')}` }});
+  }
+  deleteAssignment (id): Observable<any> {
+    return this.http.get(`/api/course/deleteassignment/${id}`, { headers: { Authorization: `Bearer ${localStorage.getItem('mean-token')}` }});
+  }
+  getAssignmentById (id): Observable<any> {
+    return this.http.get(`/api/course/getassignment/${id}`, { headers: { Authorization: `Bearer ${localStorage.getItem('mean-token')}` }});
+  }
 }
   
  

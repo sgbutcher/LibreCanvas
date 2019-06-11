@@ -21,6 +21,7 @@ export class AddassignmentComponent implements OnInit {
     this.AddAssignmentForm = this.fb.group({
       title: ['', [Validators.required]],
       description: ['', [Validators.required]],
+      instructions: ['', [Validators.required]],
       dueDate: ['', [Validators.required]],
       pointValue: ['', [Validators.required]],
     });
@@ -37,6 +38,7 @@ export class AddassignmentComponent implements OnInit {
       _id: '',
       title: this.f.title.value,
       description: this.f.description.value,
+      instructions: this.f.instructions.value,
       dueDate: this.f.dueDate.value,
       pointValue: this.f.pointValue.value
     };

@@ -1,0 +1,42 @@
+<form [formGroup]="editForm" (ngSubmit)="editAssignment()">
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input id="title" name="title"  class="form-control" formControlName="title" placeholder="Enter a course title" />
+      <div *ngIf="f.title.invalid && (f.title.dirty || f.title.touched)" class="alert alert-danger">
+        <div *ngIf="f.title.errors.required">Name is required.</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea id="description" name="description"  class="form-control" formControlName="description" placeholder="Enter description" ></textarea>
+      <div *ngIf="f.description.invalid && (f.description.dirty || f.description.touched)" class="alert alert-danger">
+        <div *ngIf="f.description.errors.required">Description is required.</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="instructions">Instructons
+        <ckeditor id="instructions" name="instructions" formControlName="instructions" placeholder="instructions"></ckeditor>
+      </label>
+    </div>
+    <div class="form-group form-check">
+      <label for="dueDate" class="form-check-label">dueDate</label>
+      <input id="dueDate" name="dueDate" type="date" class="form-control" formControlName="dueDate" >
+      <div *ngIf="f.dueDate.invalid && (f.dueDate.dirty || f.dueDate.touched)" class="alert alert-danger">
+        <div *ngIf="f.dueDate.errors.required">dueDate is required.</div>
+      </div>
+    </div>
+    <div class="form-group form-check">
+        <label for="pointValue" class="form-check-label">point Value</label>
+        <input id="pointValue" name="pointValue" type="number" class="form-control" formControlName="pointValue" >
+        <div *ngIf="f.pointValue.invalid && (f.pointValue.dirty || f.pointValue.touched)" class="alert alert-danger">
+          <div *ngIf="f.pointValue.errors.required">pointValue is required.</div>
+        </div>
+      </div>
+    <div class="form-group" >
+      <button class="btn btn-success" type="submit" (click)="editAssignment()" [disabled]="editForm.invalid">Save</button>
+      <div class="float-right">
+        <button class="btn btn-danger" type="button" (click)="deleteAssignment(assignment._id)">Delete Course</button>
+      </div>
+    <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+    </div>
+</form>

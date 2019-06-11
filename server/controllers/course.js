@@ -59,6 +59,15 @@ export function getCourseById(req, res) {
         }
     });
 }
+export function getAssignmenteById(req, res) {
+    Assignment.findById(req.params.id).exec(function (err, assignment) {
+        if (err)
+            res.status(400).send('Course not Found');
+        else {
+            res.status(200).json(assignment);
+        }
+    });
+}
 
 export function editCourse(req, res) {
     Course.findById(req.params.id, (err, course) => {
@@ -101,6 +110,7 @@ export function addAssignment(req, res) {
     var courseid = req.params.id
     assignment.title = req.body.title;
     assignment.description = req.body.description;
+    assignment.instructions = req.body.instructions;
     assignment.dueDate = req.body.dueDate;
     assignment.pointValue = req.body.pointValue;
     assignment.save().then(assignment => {
@@ -119,7 +129,7 @@ export function addAssignment(req, res) {
 export function enrollInCourse(req, res){
     var courseid = req.params.id
     var regCode = req.body.regCode
-    
+/* need to find a way to prevent same person from enrolling multiple times */    
     Course.findById({_id: courseid },(err, course) => {
         /* var user = User.find({_id: { $in: course.enrolled }}) */
         if (!course) {
@@ -145,4 +155,23 @@ export function dropFromCourse(req, res){
             res.json('successfully dropped');
     })
 
+}
+export function editAssignment(req, res) {
+    Assignment.findById(req.params.id, (err, assignment) => {
+        if (!assignment)
+            res.json(err);
+        else {
+            assignment.title = req.body.title;
+            assignment.description = req.body.description;
+            assignment.instructions = req.body.instructions;
+            assignment.dueDate = req.body.dueDate;
+            assignment.pointValue = req.body.pointValue;
+
+            assignment.save().then(assignment => {
+                res.json('Edit done');
+            }).catch(err => {
+                res.status(400).send('Edit failed' + assignment);
+            });
+        }
+    });
 }

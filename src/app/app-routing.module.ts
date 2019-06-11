@@ -18,6 +18,7 @@ import { AddassignmentComponent } from './components/courses/addassignment/addas
 import { EnrollComponent } from './components/courses/enroll/enroll.component';
 import { EnrolledCourseComponent } from './components/courses/enrolled-course/enrolled-course.component';
 import { CourseDetailsComponent } from './components/courses/course-details/course-details.component';
+import { EditAssignmentComponent } from './components/courses/edit-assignment/edit-assignment.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -33,6 +34,7 @@ const routes: Routes = [
   { path: 'createcourse', component: CreatecourseComponent, canActivate: [AuthGuard] },
   { path: 'courses/instructor', component: InstructorCourseComponent, canActivate: [AuthGuard] },
   { path: 'course/addassignment/:id', component: AddassignmentComponent, canActivate: [AuthGuard]},
+  { path: 'course/editassignment/:id', component: EditAssignmentComponent, canActivate: [AuthGuard]},
   { path: 'course/enroll/:id', component: EnrollComponent, canActivate: [AuthGuard]},
   { path: 'courses/enrolled', component: EnrolledCourseComponent, canActivate: [AuthGuard]},
   { path: 'courses/details/:id', component: CourseDetailsComponent, canActivate: [AuthGuard]}

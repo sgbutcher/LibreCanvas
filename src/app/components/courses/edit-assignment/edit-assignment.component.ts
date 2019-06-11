@@ -6,14 +6,14 @@ import { Course } from '../../../models/course'
 import { AuthenticationService } from '../../../services/authentication.service';
 
 @Component({
-  selector: 'app-edit-course',
-  templateUrl: './edit-course.component.html',
-  styleUrls: ['./edit-course.component.css']
+  selector: 'app-edit-assignment',
+  templateUrl: './edit-assignment.component.html',
+  styleUrls: ['./edit-assignment.component.css']
 })
-export class EditCourseComponent implements OnInit {
+export class EditAssignmentComponent implements OnInit {
 
   id: String;
-  course: any = {};
+  assignment: any = {};
   editForm: FormGroup;
   regCode: string;
   error = '';
@@ -25,18 +25,20 @@ export class EditCourseComponent implements OnInit {
     this.editForm = this.fb.group({
       title: ['', [Validators.required]],
       description: ['', [Validators.required]],
-      regCode: ['', [Validators.required]],
-      published: ['', [Validators.required]]
+      instructions: ['', [Validators.required]],
+      dueDate: ['', [Validators.required]],
+      pointValue: ['', [Validators.required]],
     });
     
     this.route.params.subscribe(params => {
       this.id = params.id;
-      this.courseService.getCourseById(this.id).subscribe(res => {
-        this.course = res;
-        this.editForm.get('title').setValue(this.course.title);
-        this.editForm.get('description').setValue(this.course.description);
-        this.editForm.get('regCode').setValue(this.course.regCode)
-        this.editForm.get('published').setValue(this.course.published)
+      this.courseService.getAssignmentById(this.id).subscribe(res => {
+        this.assignment = res;
+        this.editForm.get('title').setValue(this.assignment.title);
+        this.editForm.get('description').setValue(this.assignment.description);
+        this.editForm.get('instructions').setValue(this.assignment.instructions)
+        this.editForm.get('dueDate').setValue(this.assignment.dueDate)
+        this.editForm.get('pointValue').setValue(this.assignment.pointValue)
       });
     });
   }
@@ -45,11 +47,11 @@ export class EditCourseComponent implements OnInit {
   get f() { return this.editForm.controls; }
   //get Role() { return Role; }
   
-  editCourse() {
+  editAssignment() {
     if (this.editForm.invalid) {
       return;
     } else {
-    this.courseService.editCourse(this.id, this.f.title.value, this.f.description.value, this.f.regCode.value, this.f.published.value)
+    this.courseService.editAssignment(this.id, this.f.title.value, this.f.description.value, this.f.instructions.value, this.f.dueDate.value, this.f.pointValue.value)
         .subscribe(() => {
           this.router.navigateByUrl('/courses/instructor');
         }, (err) => {
@@ -58,30 +60,13 @@ export class EditCourseComponent implements OnInit {
         });
     }
   }
-  deleteCourse() {
-    this.courseService.deleteCourse(this.id)
+  deleteAssignment() {
+    this.courseService.deleteAssignment(this.id)
     .subscribe(() => {
-      this.router.navigateByUrl('/courses/instructor');
+      this.router.navigateByUrl(`/courses/assignmentDetails/${this.id}`);
     }, (err) => {
       this.error = err.error.message;
       console.error(err);
     });
-  }
-  addAssignment() {
-    this.router.navigateByUrl(`/course/addassignment/${this.id}`)
-  }
-  dropEnrolled(id) {
-    var userID = id;
-    this.courseService.dorpFromCourse(this.id, userID)
-    .subscribe(() => {
-      this.router.navigateByUrl('/courses/instructor');
-    }, (err) => {
-      this.error = err.error.message;
-      console.error(err);
-    });
-  }
-  editAssignment(id) {
-    this.router.navigate([`course/editassignment/${id}`]);
   }
 }
-

@@ -21,7 +21,7 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="description">Description address</label>
+                  <label for="description">Description</label>
                   <textarea id="description" name="description"  class="form-control" formControlName="description" placeholder="Enter description" ></textarea>
                   <div *ngIf="f.description.invalid && (f.description.dirty || f.description.touched)" class="alert alert-danger">
                     <div *ngIf="f.description.errors.required">Description is required.</div>
@@ -59,6 +59,7 @@
               <thead>
                 <tr>
                   <th scope="col">title</th>
+                  <th scope="col">description</th>
                   <th scope="col">DueDate</th>
                   <th scope="col"> pointValue</th>
                   <th scope="col"></th>
@@ -67,8 +68,10 @@
               <tbody>
                 <tr *ngFor="let item of course.assignments;  let x = index;" >
                   <th>{{item.title}}</th>
+                  <th>{{item.description}}</th>
                   <th>{{item.dueDate}}</th>
                   <th>{{item.pointValue}}</th>
+                  <th><button class="btn btn-success" type="submit" (click)="editAssignment(item._id)" [disabled]="editForm.invalid">edit</button></th>
                 </tr>
               </tbody>
             </table>

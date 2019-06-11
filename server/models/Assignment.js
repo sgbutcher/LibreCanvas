@@ -9,6 +9,10 @@ var assignmentSchema = new mongoose.Schema({
       type: String,
       required: true
       },
+    instructions: {
+      type: String,
+      required: true
+      },
     dueDate: {
       type: String,
       required: true

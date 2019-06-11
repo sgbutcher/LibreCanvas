@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { CKEditorModule } from 'ckeditor4-angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -22,6 +22,8 @@ import { AddassignmentComponent } from './components/courses/addassignment/addas
 import { EnrollComponent } from './components/courses/enroll/enroll.component';
 import { EnrolledCourseComponent } from './components/courses/enrolled-course/enrolled-course.component';
 import { CourseDetailsComponent } from './components/courses/course-details/course-details.component';
+import { AssignmentDetailsComponent } from './components/courses/assignment-details/assignment-details.component';
+import { EditAssignmentComponent } from './components/courses/edit-assignment/edit-assignment.component';
 
 
 @NgModule({
@@ -40,9 +42,12 @@ import { CourseDetailsComponent } from './components/courses/course-details/cour
     AddassignmentComponent,
     EnrollComponent,
     EnrolledCourseComponent,
-    CourseDetailsComponent
+    CourseDetailsComponent,
+    AssignmentDetailsComponent,
+    EditAssignmentComponent
   ],
   imports: [
+    CKEditorModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
