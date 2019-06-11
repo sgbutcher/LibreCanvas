@@ -22,6 +22,16 @@ export function getCoursesByInstructor(req, res) {
         }
   });
 }
+export function getEnrolledCourses(req, res) {
+    var filter = {'enrolled': req.payload._id};
+    Course.find(filter).exec(function(err, courses) {
+        if (err ||  isNullOrUndefined(courses))
+            res.status(400).send('Course inst not Found');
+        else {
+            res.status(200).json(courses);
+        }
+  });
+}
 
 export function addCourse(req, res) {
     var course = new Course();
@@ -42,7 +52,7 @@ export function getCourseById(req, res) {
     Course.findById(req.params.id).populate('assignments').populate('enrolled', 'name email')
      .exec(function (err, course) {
         if (err)
-            res.status(400).send('Course 44 not Found');
+            res.status(400).send('Course not Found');
         else {
             res.status(200).json(course);
         }
@@ -68,8 +78,8 @@ export function editCourse(req, res) {
     });
 }
 
-export function deleteCourse(req, res) {
-    Course.findByIdAndRemove({_id: req.params.id}, (err, course) => {
+export function deleteCourse(req, res) {  
+    Course.findOneAndDelete(req.params.id).exec(function (err, course) {
         if (err){
             res.json(err);
         }else if (req.payload._id !== course.instructor._id){
@@ -77,9 +87,12 @@ export function deleteCourse(req, res) {
                 "message" : "UnauthorizedError: Not course owner"
             });
         }else {
-            res.json('Removed successfully');
-        }
-    });
+        Assignment.deleteMany({_id: { $in: course.assignments }})
+        .exec(function (err){
+            if (err)res.status(400).send('this error sucks '+ err )
+        })
+        res.json('Removed successfully');
+    }})
 }
 
 export function addAssignment(req, res) {
@@ -87,6 +100,8 @@ export function addAssignment(req, res) {
     var courseid = req.params.id
     assignment.title = req.body.title;
     assignment.description = req.body.description;
+    assignment.dueDate = req.body.dueDate;
+    assignment.pointValue = req.body.pointValue;
     assignment.save().then(assignment => {
             Course.findById({_id: courseid },(err, course) => {
                 if (!course)

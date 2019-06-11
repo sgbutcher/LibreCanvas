@@ -33,6 +33,7 @@ router.post('/course', auth, ctrlCourse.addCourse);
 router.post('/course/edit/:id', auth, ctrlCourse.editCourse);
 router.post('/course/addassignment/:id', auth, ctrlCourse.addAssignment);
 router.get('/course/instructor', auth, ctrlCourse.getCoursesByInstructor);
+router.get('/course/enrolled', auth, ctrlCourse.getEnrolledCourses);
 router.post('/course/enroll/:id', auth, ctrlCourse.enrollInCourse);
 router.get('/course/delete/:id', auth, ctrlCourse.deleteCourse);
 router.get('/course/:id', auth, ctrlCourse.getCourseById);

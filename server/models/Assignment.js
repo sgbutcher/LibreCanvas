@@ -9,5 +9,13 @@ var assignmentSchema = new mongoose.Schema({
       type: String,
       required: true
       },
+    dueDate: {
+      type: String,
+      required: true
+      },
+    pointValue: {
+      type: Number,
+      required: true
+      },
 })
 export default mongoose.model('Assignment', assignmentSchema);

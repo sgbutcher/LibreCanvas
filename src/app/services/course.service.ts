@@ -58,6 +58,9 @@ export class CourseService {
       regCode: regcode,
     }
     return this.http.post(`/api/course/enroll/${id}`, r, { headers: { Authorization: `Bearer ${localStorage.getItem('mean-token')}` }});
+  }
+  getEnrolledCourses(): Observable<any> {
+    return this.http.get(`/api/course/enrolled`, { headers: { Authorization: `Bearer ${localStorage.getItem('mean-token')}` }});
   } 
 }
   
