@@ -1,40 +1,66 @@
-<form [formGroup]="editForm" (ngSubmit)="editCourse()">
-  <div class="form-group">
-    <label for="title">Title</label>
-    <input id="title" name="title"  class="form-control" formControlName="title" placeholder="Enter a course title" />
-    <div *ngIf="f.title.invalid && (f.title.dirty || f.title.touched)" class="alert alert-danger">
-      <div *ngIf="f.title.errors.required">Name is required.</div>
+<div class="row">
+    <div class="col-3">
+      <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <a class="nav-link active" id="v-pills-details-tab" data-toggle="pill" href="#v-pills-details" role="tab" aria-controls="v-pills-details" aria-selected="true">Details</a>
+        <a class="nav-link" id="v-pills-assignments-tab" data-toggle="pill" href="#v-pills-assignments" role="tab" aria-controls="v-pills-assignments" aria-selected="false">Assignments</a>
+        <a class="nav-link" id="v-pills-enrolled-tab" data-toggle="pill" href="#v-pills-enrolled" role="tab" aria-controls="v-pills-enrolled" aria-selected="false">Enrolled</a>
+        <a class="btn btn-outline-warning text-dark" id="v-pills-back-tab" routerLink="/courses/instructor">Back to Courses</a>
+      </div>
     </div>
-  </div>
-  <div class="form-group">
-    <label for="description">Description address</label>
-    <textarea id="description" name="description"  class="form-control" formControlName="description" placeholder="Enter description" ></textarea>
-    <div *ngIf="f.description.invalid && (f.description.dirty || f.description.touched)" class="alert alert-danger">
-      <div *ngIf="f.description.errors.required">Description is required.</div>
+    <div class="col-9">
+      <div class="tab-content" id="v-pills-tabContent">
+        <div class="tab-pane fade show active" id="v-pills-details" role="tabpanel" aria-labelledby="v-pills-details-tab">
+            <form [formGroup]="editForm" (ngSubmit)="editCourse()">
+                <div class="form-group">
+                  <label for="title">Title</label>
+                  <input id="title" name="title"  class="form-control" formControlName="title" placeholder="Enter a course title" />
+                  <div *ngIf="f.title.invalid && (f.title.dirty || f.title.touched)" class="alert alert-danger">
+                    <div *ngIf="f.title.errors.required">Name is required.</div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="description">Description address</label>
+                  <textarea id="description" name="description"  class="form-control" formControlName="description" placeholder="Enter description" ></textarea>
+                  <div *ngIf="f.description.invalid && (f.description.dirty || f.description.touched)" class="alert alert-danger">
+                    <div *ngIf="f.description.errors.required">Description is required.</div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="regCode">Registration Code</label>
+                  <input id="regCode" name="regCode"  class="form-control" formControlName="regCode" placeholder="Enter Registration Code" />
+                  <div *ngIf="f.regCode.invalid && (f.regCode.dirty || f.regCode.touched)" class="alert alert-danger">
+                    <div *ngIf="f.regCode.errors.required">Registration Code is required.</div>
+                  </div>
+                </div>
+                <div class="form-group form-check">
+                  <label for="published" class="form-check-label">
+                  <input id="published" name="published" type="checkbox" class="form-check-input" formControlName="published" >
+                  Published
+                  <div *ngIf="f.published.invalid && (f.published.dirty || f.published.touched)" class="alert alert-danger">
+                    <div *ngIf="f.published.errors.required">Registration Code is required.</div>
+                  </div>
+                </label>
+                </div>
+                <div class="form-group" >
+                  <button class="btn btn-success" type="submit" (click)="editCourse()" [disabled]="editForm.invalid">Save</button>
+                  <div class="float-right">
+                    <button class="btn btn-danger" type="button" (click)="deleteCourse(course._id)">Delete Course</button>
+                  </div>
+                <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+                </div>
+            </form>
+        </div>
+        <div class="tab-pane fade" id="v-pills-assignments" role="tabpanel" aria-labelledby="v-pills-assignments-tab">
+          <div>
+            <button class="btn btn-success" (click)="addAssignment()">Add Assignment</button>
+            <ul *ngFor="let item of course.assignments;  let x = index;" >
+              <li>{{item.title}}</li>
+            </ul>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">...</div>
+        <div class="tab-pane fade" id="v-pills-enrolled" role="tabpanel" aria-labelledby="v-pills-enrolled-tab">...</div>
+      </div>
     </div>
-  </div>
-  <div class="form-group">
-    <label for="regCode">Registration Code</label>
-    <input id="regCode" name="regCode"  class="form-control" formControlName="regCode" placeholder="Enter Registration Code" />
-    <div *ngIf="f.regCode.invalid && (f.regCode.dirty || f.regCode.touched)" class="alert alert-danger">
-      <div *ngIf="f.regCode.errors.required">Registration Code is required.</div>
-    </div>
-  </div>
-  <div class="form-group form-check">
-    <label for="published" class="form-check-label">
-    <input id="published" name="published" type="checkbox" class="form-check-input" formControlName="published" >
-    Published
-    <div *ngIf="f.published.invalid && (f.published.dirty || f.published.touched)" class="alert alert-danger">
-      <div *ngIf="f.published.errors.required">Registration Code is required.</div>
-    </div>
-  </label>
-  </div>
-  <div class="form-group" >
-    <button class="btn btn-warning" routerLink="/course">Cancel</button>
-    <button class="btn btn-success" type="submit" (click)="editCourse()" [disabled]="editForm.invalid">Save</button>
-    <div class="float-right">
-      <button class="btn btn-danger" type="button" (click)="deleteCourse(course._id)">Delete Course</button>
-    </div>
-  <div *ngIf="error" class="alert alert-danger">{{error}}</div>
-  </div>
-</form>
+</div>
+

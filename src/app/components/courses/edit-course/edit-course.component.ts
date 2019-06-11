@@ -67,4 +67,8 @@ export class EditCourseComponent implements OnInit {
       console.error(err);
     });
   }
+  addAssignment() {
+    this.router.navigateByUrl(`/course/addassignment/${this.id}`)
+  }
 }
+

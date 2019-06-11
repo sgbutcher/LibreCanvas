@@ -17,7 +17,9 @@ var courseSchema = new mongoose.Schema({
   },
   published: {
     type: Boolean
-  }
+  },
+  assignments: [{ type: mongoose.Schema.ObjectId, ref: 'Assignment' }],
+  enrolled: [{ type: mongoose.Schema.ObjectId, ref: 'User' }]
 });
 
 export default mongoose.model('Course', courseSchema);

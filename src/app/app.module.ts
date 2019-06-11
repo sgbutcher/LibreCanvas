@@ -18,6 +18,7 @@ import { CreatecourseComponent } from './components/courses/createcourse/createc
 import { CoursesComponent } from './components/courses/courses.component';
 import { EditCourseComponent } from './components/courses/edit-course/edit-course.component';
 import { InstructorCourseComponent } from './components/courses/instructor-course/instructor-course.component';
+import { AddassignmentComponent } from './components/courses/addassignment/addassignment.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { InstructorCourseComponent } from './components/courses/instructor-cours
     CreatecourseComponent,
     CoursesComponent,
     EditCourseComponent,
-    InstructorCourseComponent
+    InstructorCourseComponent,
+    AddassignmentComponent
   ],
   imports: [
     BrowserModule,

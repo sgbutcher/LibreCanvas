@@ -7,7 +7,7 @@
 
     <div class="navbar-collapse collapse d-sm-inline-flex ">
       <ul class="navbar-nav mr-auto">
-          <li id="createcourse" class="nav-item" routerLinkActive="active" *ngIf="auth.isLoggedIn()"><a class="nav-link" routerLink="/createcourse">Create Course</a></li>
+          <li id="instructor-course" class="nav-item" routerLinkActive="active" *ngIf="auth.isLoggedIn()"><a class="nav-link" routerLink="/courses/instructor">Create Course</a></li>
         <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" ><a class="nav-link" routerLink="/">Home <span class="sr-only">(current)</span></a></li>
         <li class="nav-item" routerLinkActive="active" *ngIf="auth.isLoggedIn()"><a class="nav-link" routerLink="/profile">Profile</a></li>
         <li class="nav-item" routerLinkActive="active" *ngIf="isAdmin"><a class="nav-link" routerLink="/admin">Users</a></li>

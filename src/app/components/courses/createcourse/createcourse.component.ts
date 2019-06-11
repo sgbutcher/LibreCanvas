@@ -5,6 +5,7 @@ import { AuthenticationService, TokenPayload } from '../../../services/authentic
 import { Router } from '@angular/router';
 import { UserDetails } from '../../../models/user'
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Assignment } from '../../../models/assignment'
 import { Role } from '../../../models/role';
 
 @Component({
@@ -41,11 +42,16 @@ export class CreatecourseComponent implements OnInit {
       description: this.f.description.value,
       instructor: { 
         _id:this.auth.getUserDetails()._id,
-         name: this.auth.getUserDetails().name,
-         email: this.auth.getUserDetails().email 
+        name: this.auth.getUserDetails().name,
+        email: this.auth.getUserDetails().email 
         },
+      //temp solution for reg code. 
+      //though unlikly, it is still possible to get same regcode twice if same first word and happen to get same random number.
+      //not sure if I will require unique regcodes in the finished app.  
       regCode: cname[0] + rnumber,
-      published: false
+      published: false,
+      assignments:[],
+      enrolled: []
     };
       this.courseService.addCourse(courseDetails).subscribe((c) => {
       this.router.navigateByUrl(`course/edit/${c._id}`);

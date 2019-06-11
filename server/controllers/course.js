@@ -1,4 +1,5 @@
 import Course from '../models/Course';
+import Assignment from '../models/Assignment';
 import { isNullOrUndefined } from 'util';
 
 export function getAllCourses(req, res) {
@@ -38,7 +39,8 @@ export function addCourse(req, res) {
     });
 }
 export function getCourseById(req, res) {
-    Course.findById(req.params.id, (err, course) => {
+    Course.findById(req.params.id).populate('assignments')
+     .exec(function (err, course) {
         if (err)
             res.status(400).send('Course 44 not Found');
         else {
@@ -77,5 +79,23 @@ export function deleteCourse(req, res) {
         }else {
             res.json('Removed successfully');
         }
+    });
+}
+
+export function addAssignment(req, res) {
+    var assignment = new Assignment();
+    var courseid = req.params.id
+    assignment.title = req.body.title;
+    assignment.description = req.body.description;
+    assignment.save().then(assignment => {
+            Course.findById({_id: courseid },(err, course) => {
+                if (!course)
+                res.json(err);
+                else { course.assignments.push( { _id: assignment._id  })
+                course.save()
+            }})
+        res.status(200).json(assignment)
+    }).catch(err => {
+        res.status(400).send('failed to create assignment');
     });
 }

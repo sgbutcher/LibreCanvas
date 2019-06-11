@@ -3,6 +3,7 @@ import { Course } from '../models/course';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators'
+import { Assignment } from '../models/assignment';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -48,6 +49,9 @@ export class CourseService {
   }
   deleteCourse(id): Observable<any> {
     return this.http.get(`/api/course/delete/${id}`, { headers: { Authorization: `Bearer ${localStorage.getItem('mean-token')}` }});
+  }
+  addAssignment(id, assignment:Assignment): Observable<any> {
+    return this.http.post(`/api/course/addassignment/${id}`, assignment, { headers: { Authorization: `Bearer ${localStorage.getItem('mean-token')}` }});
   }
 }
   

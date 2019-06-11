@@ -31,9 +31,11 @@ router.get('/users/delete/:id', auth, ctrlAdmin.deleteUser);
 router.get('/course', auth, ctrlCourse.getPublishedCourses);
 router.post('/course', auth, ctrlCourse.addCourse);
 router.post('/course/edit/:id', auth, ctrlCourse.editCourse);
+router.post('/course/addassignment/:id', auth, ctrlCourse.addAssignment);
 router.get('/course/instructor', auth, ctrlCourse.getCoursesByInstructor);
 router.get('/course/delete/:id', auth, ctrlCourse.deleteCourse);
 router.get('/course/:id', auth, ctrlCourse.getCourseById);
+
 
 
 export default router;
