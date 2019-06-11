@@ -39,7 +39,7 @@ export function addCourse(req, res) {
     });
 }
 export function getCourseById(req, res) {
-    Course.findById(req.params.id).populate('assignments')
+    Course.findById(req.params.id).populate('assignments').populate('enrolled', 'name email')
      .exec(function (err, course) {
         if (err)
             res.status(400).send('Course 44 not Found');
@@ -97,5 +97,21 @@ export function addAssignment(req, res) {
         res.status(200).json(assignment)
     }).catch(err => {
         res.status(400).send('failed to create assignment');
+    });
+}
+
+export function enrollInCourse(req, res){
+    var courseid = req.params.id
+    var regCode = req.body.regCode
+    Course.findById({_id: courseid },(err, course) => {
+        if (!course)
+        res.json(err);
+        else if (regCode !== course.regCode) {
+            res.status(400).send('Invalid Registration Code'+ regCode);
+        }else { course.enrolled.push( { _id: req.payload._id  })
+        course.save()
+        res.json('successfully enrolled');
+    }}).catch(err => {
+        res.status(400).send('failed to enroll');
     });
 }

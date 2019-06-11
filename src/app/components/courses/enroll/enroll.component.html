@@ -1,0 +1,9 @@
+<h2>Enroll in Course</h2>
+<h4 *ngIf="regcourse"> {{regcourse.title | uppercase}} </h4>
+<form class="form" [formGroup]="enrollForm"  (ngSubmit)="enroll()">
+  <div class="form-group">
+    <label for="regCode-input">Enter Course Registration Code:</label>
+    <input id="regCode-input" name="regCode" class="form-control" formControlName="regCode" placeholder="Registration Code"/>
+  <button id="enroll-button" type="submit" class="btn btn-primary">Enroll</button>
+  </div>
+</form>

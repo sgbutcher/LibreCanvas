@@ -53,6 +53,12 @@ export class CourseService {
   addAssignment(id, assignment:Assignment): Observable<any> {
     return this.http.post(`/api/course/addassignment/${id}`, assignment, { headers: { Authorization: `Bearer ${localStorage.getItem('mean-token')}` }});
   }
+  enrollInCourse(id, regcode): Observable<any> {
+    const r = {
+      regCode: regcode,
+    }
+    return this.http.post(`/api/course/enroll/${id}`, r, { headers: { Authorization: `Bearer ${localStorage.getItem('mean-token')}` }});
+  } 
 }
   
  

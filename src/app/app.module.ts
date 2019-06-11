@@ -19,6 +19,7 @@ import { CoursesComponent } from './components/courses/courses.component';
 import { EditCourseComponent } from './components/courses/edit-course/edit-course.component';
 import { InstructorCourseComponent } from './components/courses/instructor-course/instructor-course.component';
 import { AddassignmentComponent } from './components/courses/addassignment/addassignment.component';
+import { EnrollComponent } from './components/courses/enroll/enroll.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { AddassignmentComponent } from './components/courses/addassignment/addas
     CoursesComponent,
     EditCourseComponent,
     InstructorCourseComponent,
-    AddassignmentComponent
+    AddassignmentComponent,
+    EnrollComponent
   ],
   imports: [
     BrowserModule,

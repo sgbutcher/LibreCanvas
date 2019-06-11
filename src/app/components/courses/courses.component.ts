@@ -23,4 +23,7 @@ export class CoursesComponent implements OnInit {
       console.error(err);
     });
   }
+  enroll(id){
+    this.router.navigateByUrl(`/course/enroll/${id}`)
+  }
 }

@@ -21,6 +21,8 @@ export class AddassignmentComponent implements OnInit {
     this.AddAssignmentForm = this.fb.group({
       title: ['', [Validators.required]],
       description: ['', [Validators.required]],
+      dueDate: ['', [Validators.required]],
+      pointValue: ['', [Validators.required]],
     });
     this.route.params.subscribe(params => {
       this.id = params.id;
@@ -35,6 +37,8 @@ export class AddassignmentComponent implements OnInit {
       _id: '',
       title: this.f.title.value,
       description: this.f.description.value,
+      dueDate: this.f.dueDate.value,
+      pointValue: this.f.pointValue.value
     };
     this.courseService.addAssignment(this.id, assignmentDetails).subscribe(() => {
     this.router.navigateByUrl(`course/edit/${this.id}`);

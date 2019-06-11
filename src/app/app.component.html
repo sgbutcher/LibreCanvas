@@ -7,10 +7,14 @@
 
     <div class="navbar-collapse collapse d-sm-inline-flex ">
       <ul class="navbar-nav mr-auto">
-          <li id="instructor-course" class="nav-item" routerLinkActive="active" *ngIf="auth.isLoggedIn()"><a class="nav-link" routerLink="/courses/instructor">Create Course</a></li>
         <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" ><a class="nav-link" routerLink="/">Home <span class="sr-only">(current)</span></a></li>
-        <li class="nav-item" routerLinkActive="active" *ngIf="auth.isLoggedIn()"><a class="nav-link" routerLink="/profile">Profile</a></li>
-        <li class="nav-item" routerLinkActive="active" *ngIf="isAdmin"><a class="nav-link" routerLink="/admin">Users</a></li>
+        <li class="nav-item" routerLinkActive="inactive" *ngIf="auth.isLoggedIn()"><a class="nav-link" routerLink="/courses">Courses</a></li>
+        <li class="nav-item" routerLinkActive="inactive" *ngIf="auth.isLoggedIn()"><a class="nav-link" routerLink="/courses/enrolled">Enrolled</a></li>
+        <li class="nav-item" routerLinkActive="inactive" *ngIf="auth.isLoggedIn()"><a class="nav-link" routerLink="/courses/instructor">Instructor</a></li>
+        
+        <li class="nav-item" routerLinkActive="inactive" *ngIf="auth.isLoggedIn()"><a class="nav-link" routerLink="/profile">Profile</a></li>
+
+        <li class="nav-item" routerLinkActive="inactive" *ngIf="isAdmin"><a class="nav-link" routerLink="/admin">Users</a></li>
       </ul>
       <button *ngIf="!auth.isLoggedIn()" class="btn btn-primary" type="button" routerLink="/login">Login</button>
       <button *ngIf="auth.isLoggedIn()" class="btn btn-primary" type="button" (click)="logout()">Logout</button>

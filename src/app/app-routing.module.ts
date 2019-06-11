@@ -15,6 +15,7 @@ import { EditCourseComponent } from './components/courses/edit-course/edit-cours
 import { CoursesComponent } from './components/courses/courses.component'
 import { InstructorCourseComponent } from './components/courses/instructor-course/instructor-course.component'
 import { AddassignmentComponent } from './components/courses/addassignment/addassignment.component';
+import { EnrollComponent } from './components/courses/enroll/enroll.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -29,9 +30,9 @@ const routes: Routes = [
   { path: 'course/edit/:id', component: EditCourseComponent, canActivate: [AuthGuard] },
   { path: 'createcourse', component: CreatecourseComponent, canActivate: [AuthGuard] },
   { path: 'courses/instructor', component: InstructorCourseComponent, canActivate: [AuthGuard] },
-  { path: 'course/addassignment/:id', component: AddassignmentComponent, canActivate: [AuthGuard]}
-  
-  
+  { path: 'course/addassignment/:id', component: AddassignmentComponent, canActivate: [AuthGuard]},
+  { path: 'course/enroll/:id', component: EnrollComponent, canActivate: [AuthGuard]}
+
 ];
 
 @NgModule({
