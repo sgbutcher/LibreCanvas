@@ -21,6 +21,7 @@ import { InstructorCourseComponent } from './components/courses/instructor-cours
 import { AddassignmentComponent } from './components/courses/addassignment/addassignment.component';
 import { EnrollComponent } from './components/courses/enroll/enroll.component';
 import { EnrolledCourseComponent } from './components/courses/enrolled-course/enrolled-course.component';
+import { CourseDetailsComponent } from './components/courses/course-details/course-details.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { EnrolledCourseComponent } from './components/courses/enrolled-course/en
     InstructorCourseComponent,
     AddassignmentComponent,
     EnrollComponent,
-    EnrolledCourseComponent
+    EnrolledCourseComponent,
+    CourseDetailsComponent
   ],
   imports: [
     BrowserModule,

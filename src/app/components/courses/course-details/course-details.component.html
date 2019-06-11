@@ -1,0 +1,22 @@
+<h1>Course</h1>
+<h2>{{course.title}}</h2>
+<button class="btn btn-danger" (click)="dropEnrolled()">Drop Course</button>
+<hr />
+<h5>Assignments<h5>
+<table  class="table table-responsive table-striped">
+  <thead>
+    <tr>
+      <th scope="col">title</th>
+      <th scope="col">DueDate</th>
+      <th scope="col"> pointValue</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody >
+    <tr *ngFor="let item of course.assignments" >
+      <th>{{item.title}}</th>
+      <th>{{item.dueDate}}</th>
+      <th>{{item.pointValue}}</th>
+    </tr>
+  </tbody>
+</table>

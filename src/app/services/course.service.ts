@@ -61,6 +61,12 @@ export class CourseService {
   }
   getEnrolledCourses(): Observable<any> {
     return this.http.get(`/api/course/enrolled`, { headers: { Authorization: `Bearer ${localStorage.getItem('mean-token')}` }});
+  }
+  dorpFromCourse(id, userid): Observable<any> {
+    const r = {
+      _id: userid
+    }
+    return this.http.post(`/api/course/drop/${id}`, r, { headers: { Authorization: `Bearer ${localStorage.getItem('mean-token')}` }});
   } 
 }
   

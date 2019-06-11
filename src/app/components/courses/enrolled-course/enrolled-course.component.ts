@@ -25,5 +25,8 @@ export class EnrolledCourseComponent implements OnInit {
       console.error(err);
     });
   }
+  courseDetails(id) {
+    this.router.navigate([`courses/details/${id}`]);
+  }
 
 }

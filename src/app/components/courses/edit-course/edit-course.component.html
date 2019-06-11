@@ -1,3 +1,5 @@
+<h1>Course</h1>
+<h2>{{course.title}}</h2>
 <div class="row">
     <div class="col-3">
       <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
@@ -86,7 +88,7 @@
                 <tr *ngFor="let item of course.enrolled;  let x = index;" >
                   <th>{{item.name}}</th>
                   <th>{{item.email}}</th>
-                  <th> [del] </th>
+                  <th><button class="btn btn-danger" (click)="dropEnrolled(item._id)">Drop Student</button></th>
                 </tr>
               </tbody>
             </table>

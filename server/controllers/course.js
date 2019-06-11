@@ -1,4 +1,5 @@
 import Course from '../models/Course';
+import User from '../models/User';
 import Assignment from '../models/Assignment';
 import { isNullOrUndefined } from 'util';
 
@@ -118,15 +119,30 @@ export function addAssignment(req, res) {
 export function enrollInCourse(req, res){
     var courseid = req.params.id
     var regCode = req.body.regCode
+    
     Course.findById({_id: courseid },(err, course) => {
-        if (!course)
-        res.json(err);
-        else if (regCode !== course.regCode) {
+        /* var user = User.find({_id: { $in: course.enrolled }}) */
+        if (!course) {
+            res.json(err);
+        }else if (regCode !== course.regCode) {
             res.status(400).send('Invalid Registration Code'+ regCode);
-        }else { course.enrolled.push( { _id: req.payload._id  })
-        course.save()
-        res.json('successfully enrolled');
-    }}).catch(err => {
+        }else /* if (user){
+            res.json('already enrolled')
+        }else if (!user) */    
+            course.enrolled.push( { _id: req.payload._id  })
+            course.save()
+            res.json('successfully enrolled');
+        }).catch(err => {
         res.status(400).send('failed to enroll');
     });
+}
+export function dropFromCourse(req, res){
+    var courseid = req.params.id
+    var  userID = req.body._id
+    Course.findById({_id: courseid },(err, course) => {
+        course.enrolled.pull( { _id: userID  })
+            course.save()
+            res.json('successfully dropped');
+    })
+
 }

@@ -37,6 +37,7 @@ router.get('/course/enrolled', auth, ctrlCourse.getEnrolledCourses);
 router.post('/course/enroll/:id', auth, ctrlCourse.enrollInCourse);
 router.get('/course/delete/:id', auth, ctrlCourse.deleteCourse);
 router.get('/course/:id', auth, ctrlCourse.getCourseById);
+router.post('/course/drop/:id', auth, ctrlCourse.dropFromCourse);
 
 
 

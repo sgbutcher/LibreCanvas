@@ -70,5 +70,15 @@ export class EditCourseComponent implements OnInit {
   addAssignment() {
     this.router.navigateByUrl(`/course/addassignment/${this.id}`)
   }
+  dropEnrolled(id) {
+    var userID = id;
+    this.courseService.dorpFromCourse(this.id, userID)
+    .subscribe(() => {
+      this.router.navigateByUrl('/courses/instructor');
+    }, (err) => {
+      this.error = err.error.message;
+      console.error(err);
+    });
+  }
 }
 
