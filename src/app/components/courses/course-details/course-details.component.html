@@ -15,8 +15,8 @@
   <tbody >
     <tr *ngFor="let item of course.assignments" (click)="assignmentDetails(item._id)" class="cursor-pointer" title="Edit Course">
       <th>{{item.title}}</th>
-      <th>{{item.dueDate}}</th>
-      <th>{{item.pointValue}}</th>
+      <td>{{item.dueDate}}</td>
+      <td>{{item.pointValue}}</td>
     </tr>
   </tbody>
 </table>
