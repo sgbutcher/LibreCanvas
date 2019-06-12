@@ -35,7 +35,7 @@
     <div class="form-group" >
       <button class="btn btn-success" type="submit" (click)="editAssignment()" [disabled]="editForm.invalid">Save</button>
       <div class="float-right">
-        <button class="btn btn-danger" type="button" (click)="deleteAssignment(assignment._id)">Delete Course</button>
+        <button class="btn btn-danger" type="button" (click)="deleteAssignment(course._id)">Delete Course</button>
       </div>
     <div *ngIf="error" class="alert alert-danger">{{error}}</div>
     </div>

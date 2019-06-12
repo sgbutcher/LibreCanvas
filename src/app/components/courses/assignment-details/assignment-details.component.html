@@ -1,3 +1,7 @@
-<p>
-  assignment-details works!
-</p>
+<h1>Assignment Details</h1>
+<h2>{{assignment.title}}</h2>
+<hr />
+<div><h5>Discription</h5><p>{{assignment.description}}</p><div>
+<hr />
+<h5>Instructions</h5>
+<div [innerHTML]="assignment.instructions"></div>

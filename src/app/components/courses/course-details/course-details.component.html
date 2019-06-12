@@ -3,7 +3,7 @@
 <button class="btn btn-danger" (click)="dropEnrolled()">Drop Course</button>
 <hr />
 <h5>Assignments<h5>
-<table  class="table table-responsive table-striped">
+<table  class="table table-responsive table-hover">
   <thead>
     <tr>
       <th scope="col">title</th>
@@ -13,7 +13,7 @@
     </tr>
   </thead>
   <tbody >
-    <tr *ngFor="let item of course.assignments" >
+    <tr *ngFor="let item of course.assignments" (click)="assignmentDetails(item._id)" class="cursor-pointer" title="Edit Course">
       <th>{{item.title}}</th>
       <th>{{item.dueDate}}</th>
       <th>{{item.pointValue}}</th>

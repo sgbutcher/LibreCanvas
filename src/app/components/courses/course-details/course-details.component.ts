@@ -49,5 +49,8 @@ export class CourseDetailsComponent implements OnInit {
       console.error(err);
     });
   }
+  assignmentDetails(id) {
+    this.router.navigateByUrl(`/course/assignmentdetail/${id}`);
+  }
 
 }
